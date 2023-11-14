@@ -1,0 +1,41 @@
+{% if HasDescription -%}
+/** {{ Description }} */
+{% endif -%}
+
+{% if ExportTypes %}export {% endif %}{% if IsAbstract %}abstract {% endif %}class {{ ClassName }} {
+
+{% for property in Properties -%}
+{%   if property.HasDescription -%}
+    /** {{ property.Description }} */
+{%   endif -%}
+{%   if property.Type == 'Date'  -%}
+    private {% if property.IsReadOnly %}readonly {% endif %}_{{ property.PropertyName }}{% if property.IsOptional %}?{% elsif RequiresStrictPropertyInitialization %}!{% endif %}: {{ property.Type }}{{ property.TypePostfix }} = null;
+
+    public set {{ property.PropertyName }}(val: any) {
+        this._{{ property.PropertyName }} = val && typeof val === "string" ? new Date(val) : val
+    }
+	
+    public get {{ property.PropertyName }}(): {{ property.Type }} {
+        return this._{{ property.PropertyName }};
+    }
+{% else   -%}
+    public {% if property.IsReadOnly %}readonly {% endif %}{{ property.PropertyName }}{% if property.IsOptional %}?{% elsif RequiresStrictPropertyInitialization %}!{% endif %}: {{ property.Type }}{{ property.TypePostfix }} = null;
+{%   endif -%}
+	
+{% endfor -%}
+    constructor({% if GenerateConstructorInterface %}data?: Partial<{{ ClassName }}>{% endif %}) {
+        Object.assign(this, data);
+{% for property in Properties -%}
+{%   if property.Type == 'Date'  -%}
+        Object.defineProperties(this, {
+            _{{ property.PropertyName }}: { writable: true, enumerable: false },
+            {{ property.PropertyName }}: {
+                get: () => { return this._{{ property.PropertyName }}; },
+                set: (val) => { this._{{ property.PropertyName }} = val && typeof val === "string" ? new Date(val) : val; },
+                enumerable: true
+            }
+        });
+{%   endif -%}
+{% endfor -%}
+    }
+}

@@ -1,0 +1,32 @@
+{% if RequiresClientFunctions -%}
+
+{% if Framework.IsAngular -%}
+function blobToText(blob: any): Observable<string> {
+    return new Observable<string>((observer: any) => {
+        if (!blob) {
+            observer.next("");
+            observer.complete();
+        } else {
+            let reader = new FileReader();
+            reader.onload = event => {
+                observer.next((event.target as any).result);
+                observer.complete();
+            };
+            reader.readAsText(blob);
+        }
+    });
+}
+
+{% elsif Framework.IsAngularJS -%}
+function blobToText(blob: Blob, q: ng.IQService): ng.IPromise<string> {
+    return new q((resolve) => {
+        let reader = new FileReader();
+        reader.onload = event => resolve((event.target as any).result);
+        reader.readAsText(blob);
+    });
+}
+
+{% elsif Framework.IsAxios -%}
+
+{% endif -%}
+{% endif -%}

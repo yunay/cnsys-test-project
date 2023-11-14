@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+
+	<line class="dot-1 stroke-1" x1="256" y1="412" x2="256.5" y2="412"/>
+	<line class="dot-2 stroke-1" x1="256" y1="412" x2="256.5" y2="412"/>
+	<line class="dot-3 stroke-1" x1="256" y1="412" x2="256.5" y2="412"/>
+
+	<path class="arc-0 stroke-3" d="M 256 28 A 1 1 1 1 1 256 484 1 1 1 1 1 256 28"/>
+	<path class="arc-1 stroke-2" d="M 256 28 A 1 1 1 1 1 256 484"/>
+	<path class="arc-2 stroke-1" d="M 256 100 A 1 1 1 1 1 256 412"/>
+
+	<style>
+		.stroke-1,
+		.stroke-2,
+		.stroke-3 {
+			fill: none;			
+			stroke-width: 10;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+			stroke-miterlimit: 10;
+		}
+
+		.stroke-1 {
+			stroke: #293135;
+		}
+
+		.stroke-2 {
+			stroke: #29313570;
+		}
+
+		.stroke-3 {
+			stroke: #29313510;
+		}
+
+		.dot-1{
+			transform-origin: 50% 50%;	
+			animation: 2s ease-in-out infinite rotate-anim-2;
+			animation-delay: 0.1s;
+		}
+
+		.dot-2{
+			transform-origin: 50% 50%;	
+			animation: 2s ease-in-out infinite rotate-anim-2;
+			animation-delay: 0.2s;
+		}
+
+		.dot-3{
+			transform-origin: 50% 50%;	
+			animation: 2s ease-in-out infinite rotate-anim-2;
+			animation-delay: 0.3s;
+		}
+
+		.arc-1{
+			transform-origin: 50% 50%;	
+			animation: 1s linear infinite rotate-anim-1;
+			animation-direction: reverse;
+		}
+
+		.arc-2{
+			transform-origin: 50% 50%;	
+			animation: 1.5s ease-in-out infinite rotate-anim-1;
+			animation-direction: alternate;	
+
+			stroke-dasharray: 450;
+			animation-fill-mode: both;
+		}
+
+		@keyframes rotate-anim-1 {
+			0% {
+				transform: rotate(0deg);
+				stroke-dashoffset: 400;
+			}
+			100% {
+				transform: rotate(360deg);
+				stroke-dashoffset: 0;
+			}
+		}
+
+		@keyframes rotate-anim-2 {
+			0% {
+				transform: rotate(0deg);
+			}
+			80% {
+				transform: rotate(360deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+
+</svg>
