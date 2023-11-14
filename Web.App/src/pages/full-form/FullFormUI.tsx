@@ -1,7 +1,7 @@
-﻿import { FormContextProvider, useHTMLControls, UsersUI, UserUI } from 'common';
+﻿import { FormContextProvider, MultiLevelModelUI, useHTMLControls, UsersUI, UserUI } from 'common';
 import React from 'react';
-import { useForm, SubmitHandler, SubmitErrorHandler, Path } from 'react-hook-form';
-import { FullForm, Person } from 'web-api';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { FullForm } from 'web-api';
 
 interface IFullFormUIProps { }
 
@@ -46,6 +46,11 @@ export const FullFormUI: React.FC<IFullFormUIProps> = () => {
                         <br />
                         <h4>Потребители</h4>
                         <UsersUI propertyChainNames={selector('users')} />
+                    </fieldset>
+                    <fieldset>
+                        <br />
+                        <h4>Модел на много нива</h4>
+                        <MultiLevelModelUI propertyChainNames={selector('multiLevelModel')} />
                     </fieldset>
                 </div>
                 <div className="card-footer">

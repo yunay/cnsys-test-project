@@ -19,6 +19,37 @@ export enum Colors {
     Yellow = "Yellow",
 }
 
+export class FifthLevel {
+
+    public fifthLevelText?: string | null = null;
+	
+    constructor(data?: Partial<FifthLevel>) {
+        Object.assign(this, data);
+    }
+}
+
+export class FirstLevel {
+
+    public firstLevelText?: string | null = null;
+	
+    public secondLevel?: SecondLevel = null;
+	
+    constructor(data?: Partial<FirstLevel>) {
+        Object.assign(this, data);
+    }
+}
+
+export class FourthLevel {
+
+    public fourthLevelText?: string | null = null;
+	
+    public fifthLevel?: FifthLevel = null;
+	
+    constructor(data?: Partial<FourthLevel>) {
+        Object.assign(this, data);
+    }
+}
+
 export class FullForm {
 
     public formName?: string | null = null;
@@ -26,6 +57,8 @@ export class FullForm {
     public owner?: Person = null;
 	
     public users?: Person[] | null = null;
+	
+    public multiLevelModel?: MultiLevelModel = null;
 	
     constructor(data?: Partial<FullForm>) {
         Object.assign(this, data);
@@ -35,6 +68,15 @@ export class FullForm {
 export enum Gender {
     Male = "Male",
     Female = "Female",
+}
+
+export class MultiLevelModel {
+
+    public firstLevel?: FirstLevel = null;
+	
+    constructor(data?: Partial<MultiLevelModel>) {
+        Object.assign(this, data);
+    }
 }
 
 export class Person {
@@ -53,6 +95,26 @@ export class Person {
         return this._birthDate;
     }
 	
+    private _fromDate?: Date | null = null;
+
+    public set fromDate(val: any) {
+        this._fromDate = val && typeof val === "string" ? new Date(val) : val
+    }
+	
+    public get fromDate(): Date {
+        return this._fromDate;
+    }
+	
+    private _toDate?: Date | null = null;
+
+    public set toDate(val: any) {
+        this._toDate = val && typeof val === "string" ? new Date(val) : val
+    }
+	
+    public get toDate(): Date {
+        return this._toDate;
+    }
+	
     public address?: string | null = null;
 	
     public favoriteColors?: Colors[] | null = null;
@@ -69,6 +131,44 @@ export class Person {
                 enumerable: true
             }
         });
+        Object.defineProperties(this, {
+            _fromDate: { writable: true, enumerable: false },
+            fromDate: {
+                get: () => { return this._fromDate; },
+                set: (val) => { this._fromDate = val && typeof val === "string" ? new Date(val) : val; },
+                enumerable: true
+            }
+        });
+        Object.defineProperties(this, {
+            _toDate: { writable: true, enumerable: false },
+            toDate: {
+                get: () => { return this._toDate; },
+                set: (val) => { this._toDate = val && typeof val === "string" ? new Date(val) : val; },
+                enumerable: true
+            }
+        });
+    }
+}
+
+export class SecondLevel {
+
+    public secondLevelText?: string | null = null;
+	
+    public thirdLevel?: ThirdLevel = null;
+	
+    constructor(data?: Partial<SecondLevel>) {
+        Object.assign(this, data);
+    }
+}
+
+export class ThirdLevel {
+
+    public thirdLevelText?: string | null = null;
+	
+    public fourthLevel?: FourthLevel = null;
+	
+    constructor(data?: Partial<ThirdLevel>) {
+        Object.assign(this, data);
     }
 }
 

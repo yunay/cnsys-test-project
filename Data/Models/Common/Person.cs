@@ -8,6 +8,10 @@
 
         public DateTime? BirthDate { get; set; }
 
+        public DateTime? FromDate { get; set; }
+
+        public DateTime? ToDate { get; set; }
+
         public string Address { get; set; }
 
         public List<Colors> FavoriteColors { get; set; }
