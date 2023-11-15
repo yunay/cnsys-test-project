@@ -1,0 +1,10 @@
+{
+  "name": "dans.soxo.web.app.task.runnner",
+  "version": "1.0.0",
+  "scripts": {
+    "restore-cnsys-react-hook-forms": "cd cnsys-react-hook-forms && npm install",
+    "start-cnsys-react-hook-forms": "cd cnsys-react-hook-forms && npm start",
+    "restore-cnsys-react-mobx-forms": "cd cnsys-react-mobx-forms && npm install",
+    "start-cnsys-react-mobx-forms": "cd cnsys-react-mobx-forms && npm start"
+  }
+}
