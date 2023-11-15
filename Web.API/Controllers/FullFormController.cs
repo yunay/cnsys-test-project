@@ -9,12 +9,12 @@ namespace Web.API.Controllers
     public class FullFormController : Controller
     {
         [HttpGet]
-        [ProducesResponseType(typeof(FullForm), StatusCodes.Status200OK)]
-        public IActionResult GetData(CancellationToken cancellationToken)
+        [ProducesResponseType(typeof(IEnumerable<FullForm>), StatusCodes.Status200OK)]
+        public IActionResult GetData([FromQuery] FullFormSearchCriteria criteria, CancellationToken cancellationToken)
         {
             var result = new FullForm();
 
-            return Ok(result);
+            return Ok(new List<FullForm>() { result });
         }
 
         [HttpPost]

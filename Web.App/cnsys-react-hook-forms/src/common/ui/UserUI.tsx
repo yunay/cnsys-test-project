@@ -1,16 +1,13 @@
 ﻿import { IComponentInForm, useFormContext, useHTMLControls } from 'common';
 import React from 'react';
 import { Person } from 'web-api';
-import { useWatch } from 'react-hook-form';
 
 interface IUserUIProps extends IComponentInForm { }
 
 export const UserUI: React.FC<IUserUIProps> = ({ propertyChainNames }) => {
 
-    const { context, mainModel } = useFormContext();
-    const { labelFor, inputFor, textAreaFor } = useHTMLControls<Person>(context, propertyChainNames);
-    // const model = useWatch<Person>();
-    //console.log('UserUI', mainModel)
+    const { context } = useFormContext();
+    const { labelFor, inputFor, textAreaFor, dateFor } = useHTMLControls<Person>(context, propertyChainNames);
 
     return <>
         <div className="row">
@@ -24,7 +21,7 @@ export const UserUI: React.FC<IUserUIProps> = ({ propertyChainNames }) => {
             </div>
             <div className="col-4">
                 {labelFor('birthDate', 'Дата на раждане', true)}
-                {inputFor('birthDate')}
+                {dateFor('birthDate')}
             </div>
         </div>
         <div className="row">
